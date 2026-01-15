@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>Patou.Logger</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Patou</Authors>
+    <Description>Logs PATOU !!!</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/PatoucheH/Package_Patou</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>

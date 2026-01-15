@@ -1,0 +1,1 @@
+﻿Patou.Logger.PatouLogger.Log();
