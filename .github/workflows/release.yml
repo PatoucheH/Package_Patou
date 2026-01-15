@@ -1,0 +1,47 @@
+name: Release packages
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repo
+      - uses: actions/checkout@v4
+
+      # 2️⃣ Node.js (npm)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      # 3️⃣ Publish npm package
+      - name: Publish npm
+        working-directory: js/patou-logger-js
+        run: |
+          npm ci
+          npm run build
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # 4️⃣ .NET
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      # 5️⃣ Publish NuGet package
+      - name: Publish NuGet
+        working-directory: dotnet/Patou.Logger
+        run: |
+          dotnet restore
+          dotnet pack -c Release
+          dotnet nuget push bin/Release/*.nupkg \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json
