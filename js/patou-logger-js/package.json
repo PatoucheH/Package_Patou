@@ -1,6 +1,6 @@
 {
   "name": "patou-logger",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Log PATOU !!!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
