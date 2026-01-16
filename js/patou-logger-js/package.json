@@ -1,10 +1,14 @@
 {
   "name": "patou-logger",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Log PATOU !!!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PatoucheH/Package_Patou"
+  },
   "scripts": {
     "build": "tsc"
   },
