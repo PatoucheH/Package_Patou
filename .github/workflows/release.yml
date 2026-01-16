@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Update npm to latest (OIDC requires npm ≥11.5.1)
+        run: npm install -g npm@latest
+
       # 3️⃣ Publish npm package (Trusted Publishing via OIDC - no token needed)
       - name: Publish npm
         working-directory: js/patou-logger-js
@@ -30,8 +33,6 @@ jobs:
           npm ci
           npm run build
           npm publish --provenance --access public
-        env:
-          NPM_CONFIG_PROVENANCE: true
 
       # 4️⃣ .NET
       - name: Setup .NET
