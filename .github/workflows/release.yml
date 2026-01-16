@@ -5,6 +5,10 @@ on:
     tags:
       - "v*.*.*"
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -17,18 +21,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           registry-url: https://registry.npmjs.org/
 
-      # 3️⃣ Publish npm package
+      # 3️⃣ Publish npm package (Trusted Publishing - no token needed)
       - name: Publish npm
         working-directory: js/patou-logger-js
         run: |
           npm ci
           npm run build
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          npm publish --provenance --access public
 
       # 4️⃣ .NET
       - name: Setup .NET
